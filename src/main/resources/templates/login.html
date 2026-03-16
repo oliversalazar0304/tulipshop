@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="general/fragmentos :: head"></head>
+<body>
+<header th:replace="general/fragmentos :: header"></header>
+
+<div class="container mt-5" style="max-width:500px;">
+    <div class="card shadow">
+        <div class="card-body">
+            <h2 class="mb-4 text-center">Iniciar Sesion</h2>
+
+            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+            <form th:action="@{/login}" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Correo</label>
+                    <input type="email" name="correo" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Contraseña</label>
+                    <input type="password" name="password" class="form-control" required>
+                </div>
+
+                <button class="btn btn-primary w-100">Ingresar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="general/fragmentos :: footer"></footer>
+</body>
+</html>

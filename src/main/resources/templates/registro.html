@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="general/fragmentos :: head"></head>
+<body>
+<header th:replace="general/fragmentos :: header"></header>
+
+<div class="container mt-5" style="max-width:600px;">
+    <div class="card shadow">
+        <div class="card-body">
+            <h2 class="mb-4 text-center">Registro de Cliente</h2>
+
+            <form th:action="@{/registro}" th:object="${usuario}" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Nombre Completo</label>
+                    <input th:field="*{nombreCompleto}" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Correo</label>
+                    <input th:field="*{correo}" type="email" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Contraseña</label>
+                    <input th:field="*{password}" type="password" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Direccion</label>
+                    <textarea th:field="*{direccion}" class="form-control" required></textarea>
+                </div>
+
+                <button class="btn btn-success w-100">Crear cuenta</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="general/fragmentos :: footer"></footer>
+</body>
+</html>

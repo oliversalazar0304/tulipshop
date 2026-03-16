@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="general/fragmentos :: head"></head>
+<body>
+<header th:replace="general/fragmentos :: header"></header>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card shadow p-3">
+                <h3>Nueva Categoria</h3>
+
+                <form th:action="@{/admin/categorias/guardar}" th:object="${categoria}" method="post">
+                    <div class="mb-3">
+                        <label>Nombre</label>
+                        <input th:field="*{nombre}" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Descripcion</label>
+                        <textarea th:field="*{descripcion}" class="form-control"></textarea>
+                    </div>
+
+                    <button class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <div class="card shadow p-3">
+                <h3>Lista de Categorias</h3>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Descripcion</th>
+                            <th>Accion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="c : ${categorias}">
+                            <td th:text="${c.id}"></td>
+                            <td th:text="${c.nombre}"></td>
+                            <td th:text="${c.descripcion}"></td>
+                            <td>
+                                <a th:href="@{/admin/categorias/eliminar/{id}(id=${c.id})}" class="btn btn-danger btn-sm">Eliminar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="general/fragmentos :: footer"></footer>
+</body>
+</html>

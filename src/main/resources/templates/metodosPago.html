@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="general/fragmentos :: head"></head>
+<body>
+<header th:replace="general/fragmentos :: header"></header>
+
+<div class="container mt-4">
+    <h2>Metodos de Pago</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card shadow p-3">
+                <h4>Agregar metodo de pago</h4>
+
+                <form th:action="@{/metodos-pago/guardar}" th:object="${metodo}" method="post">
+
+                    <div class="mb-3">
+                        <label>Tipo de tarjeta</label>
+
+                        <select th:field="*{tipoTarjeta}" class="form-control" required>
+                            <option value="">Seleccione una tarjeta</option>
+                            <option value="VISA">VISA</option>
+                            <option value="MASTERCARD">Mastercard</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Numero tarjeta</label>
+                        <input th:field="*{numeroEnmascarado}"
+                               class="form-control"
+                               placeholder="**** **** **** 1234"
+                               required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Nombre del titular</label>
+                        <input th:field="*{nombreTitular}"
+                               class="form-control"
+                               required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Fecha de expiracion</label>
+
+                        <input type="month"
+                               th:field="*{fechaExpiracion}"
+                               class="form-control"
+                               required>
+                    </div>
+
+                    <button class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow p-3">
+                <h4>Mis tarjetas guardadas</h4>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tipo</th>
+                            <th>Número</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="m : ${metodos}">
+                            <td th:text="${m.id}"></td>
+                            <td th:text="${m.tipoTarjeta}"></td>
+                            <td th:text="${m.numeroEnmascarado}"></td>
+                            <td>
+                                <a th:href="@{/metodos-pago/eliminar/{id}(id=${m.id})}"
+                                   class="btn btn-danger btn-sm">
+                                   Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="general/fragmentos :: footer"></footer>
+</body>
+</html>

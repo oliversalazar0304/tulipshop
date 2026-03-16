@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="general/fragmentos :: head"></head>
+<body>
+<header th:replace="general/fragmentos :: header"></header>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <img th:src="@{'/img/' + ${producto.imagenUrl}}"
+                 class="img-fluid rounded shadow"
+                 alt="producto"
+                 style="width:100%; max-height:500px; object-fit:cover;">
+        </div>
+
+        <div class="col-md-6">
+            <h2 th:text="${producto.nombre}"></h2>
+            <p th:text="${producto.descripcion}"></p>
+            <p><strong>Categoría:</strong> <span th:text="${producto.categoria.nombre}"></span></p>
+            <p><strong>Precio:</strong> ₡ <span th:text="${producto.precio}"></span></p>
+            <p><strong>Stock:</strong> <span th:text="${producto.stock}"></span></p>
+
+            <form th:action="@{/carrito/agregar/{id}(id=${producto.id})}" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Cantidad</label>
+                    <input type="number"
+                           name="cantidad"
+                           min="1"
+                           value="1"
+                           class="form-control"
+                           style="max-width:120px;">
+                </div>
+
+                <button class="btn btn-success">Agregar al carrito</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="general/fragmentos :: footer"></footer>
+</body>
+</html>

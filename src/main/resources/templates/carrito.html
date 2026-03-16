@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="general/fragmentos :: head"></head>
+<body>
+<header th:replace="general/fragmentos :: header"></header>
+
+<div class="container mt-4">
+    <h2>Carrito de Compras</h2>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Subtotal</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="d : ${detalles}">
+                <td th:text="${d.producto.nombre}"></td>
+                <td>
+                    <form th:action="@{/carrito/actualizar/{id}(id=${d.id})}" method="post" class="d-flex gap-2">
+                        <input type="number" name="cantidad" th:value="${d.cantidad}" min="1" class="form-control" style="width:100px;">
+                        <button class="btn btn-sm btn-primary">Actualizar</button>
+                    </form>
+                </td>
+                <td th:text="${d.precioUnitario}"></td>
+                <td th:text="${d.subtotal}"></td>
+                <td>
+                    <a th:href="@{/carrito/eliminar/{id}(id=${d.id})}" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="card p-3 shadow-sm">
+        <p><strong>Subtotal:</strong> ₡ <span th:text="${subtotal}"></span></p>
+        <p><strong>Impuesto:</strong> ₡ <span th:text="${impuesto}"></span></p>
+        <p><strong>Envio:</strong> ₡ <span th:text="${envio}"></span></p>
+        <p><strong>Total:</strong> ₡ <span th:text="${total}"></span></p>
+
+        <form th:action="@{/pedidos/confirmar}" method="post">
+            <div class="mb-3">
+                <label class="form-label">Metodo de Pago</label>
+                <select name="metodoPagoId" class="form-select" required>
+                    <option value="">Seleccione un metodo</option>
+                    <option th:each="m : ${metodos}"
+                            th:value="${m.id}"
+                            th:text="${m.tipoTarjeta + ' - ' + m.numeroEnmascarado}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Fecha de Entrega</label>
+                <input type="date" name="fechaEntrega" class="form-control" required>
+            </div>
+
+            <button class="btn btn-success">Confirmar Pedido</button>
+        </form>
+    </div>
+</div>
+
+<footer th:replace="general/fragmentos :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,12 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.card img {
+    object-fit: cover;
+}
+
+.navbar-brand {
+    color: #ffb6c1 !important;
+    font-weight: bold;
+}

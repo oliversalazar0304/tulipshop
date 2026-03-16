@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="general/fragmentos :: head"></head>
+<body>
+<header th:replace="general/fragmentos :: header"></header>
+
+<div class="container mt-4">
+    <h2>Mis Pedidos</h2>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha Pedido</th>
+                <th>Fecha Entrega</th>
+                <th>Total</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="p : ${pedidos}">
+                <td th:text="${p.id}"></td>
+                <td th:text="${p.fechaPedido}"></td>
+                <td th:text="${p.fechaEntrega}"></td>
+                <td th:text="${p.total}"></td>
+                <td th:text="${p.estado}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer th:replace="general/fragmentos :: footer"></footer>
+</body>
+</html>

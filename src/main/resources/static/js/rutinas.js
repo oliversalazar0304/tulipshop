@@ -1,0 +1,1 @@
+console.log("Tulip Shop cargado correctamente");

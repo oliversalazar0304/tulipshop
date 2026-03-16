@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="general/fragmentos :: head"></head>
+<body>
+<header th:replace="general/fragmentos :: header"></header>
+
+<div class="container mt-4">
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">Bienvenido a Tulip Shop</h1>
+            <p class="col-md-8 fs-4">
+                Encuentra arreglos florales para cumpleaños, citas, condolencias y ocasiones especiales.
+            </p>
+            <a th:href="@{/catalogo}" class="btn btn-primary btn-lg">Ver catálogo</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-4" th:each="p : ${productos}">
+            <div class="card h-100 shadow-sm">
+
+                <img th:src="@{'/img/' + ${p.imagenUrl}}"
+                     class="card-img-top"
+                     style="height:250px; object-fit:cover;"
+                     alt="producto">
+
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${p.nombre}"></h5>
+                    <p class="card-text" th:text="${p.descripcion}"></p>
+                    <p class="fw-bold">₡ <span th:text="${p.precio}"></span></p>
+
+                    <a th:href="@{/producto/{id}(id=${p.id})}" class="btn btn-outline-primary">
+                        Ver detalle
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="general/fragmentos :: footer"></footer>
+</body>
+</html>

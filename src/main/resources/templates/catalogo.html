@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="general/fragmentos :: head"></head>
+
+<body>
+
+<header th:replace="general/fragmentos :: header"></header>
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">Catalogo de Productos</h2>
+
+    <div class="mb-4">
+
+        <a th:href="@{/catalogo}" class="btn btn-outline-dark me-2">
+            Todas
+        </a>
+
+        <a th:each="c : ${categorias}"
+           th:href="@{/catalogo/categoria/{id}(id=${c.id})}"
+           th:text="${c.nombre}"
+           class="btn btn-outline-primary me-2">
+        </a>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4 mb-4" th:each="p : ${productos}">
+
+            <div class="card shadow-sm h-100">
+
+                <img th:src="@{'/img/' + ${p.imagenUrl}}"
+                     class="card-img-top"
+                     style="height:250px; object-fit:cover;"
+                     alt="producto">
+
+                <div class="card-body">
+
+                    <h5 class="card-title"
+                        th:text="${p.nombre}">
+                    </h5>
+
+                    <!-- DESCRIPCION -->
+                    <p class="card-text"
+                       th:text="${p.descripcion}">
+                    </p>
+
+                    <p>
+                        <strong>
+                            Precio:
+                            ₡ <span th:text="${p.precio}"></span>
+                        </strong>
+                    </p>
+
+                    <p>
+                        <strong>Stock:</strong>
+                        <span th:text="${p.stock}"></span>
+                    </p>
+
+                    <a th:href="@{/producto/{id}(id=${p.id})}"
+                       class="btn btn-primary">
+                        Ver detalle
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer th:replace="general/fragmentos :: footer"></footer>
+
+</body>
+</html>
