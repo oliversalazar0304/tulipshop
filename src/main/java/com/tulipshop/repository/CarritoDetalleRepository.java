@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface CarritoDetalleRepository extends JpaRepository<CarritoDetalle, Long> {
     List<CarritoDetalle> findByCarrito(Carrito carrito);
     Optional<CarritoDetalle> findByCarritoAndProducto(Carrito carrito, Producto producto);
+    List<CarritoDetalle> findByProducto(Producto producto); 
 }

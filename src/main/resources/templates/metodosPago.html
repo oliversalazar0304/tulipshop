@@ -14,6 +14,7 @@
 
                 <form th:action="@{/metodos-pago/guardar}" th:object="${metodo}" method="post">
 
+                    <!-- Tipo de tarjeta -->
                     <div class="mb-3">
                         <label>Tipo de tarjeta</label>
 
@@ -24,6 +25,7 @@
                         </select>
                     </div>
 
+                    <!-- Numero tarjeta -->
                     <div class="mb-3">
                         <label>Numero tarjeta</label>
                         <input th:field="*{numeroEnmascarado}"
@@ -32,6 +34,7 @@
                                required>
                     </div>
 
+                    <!-- Nombre titular -->
                     <div class="mb-3">
                         <label>Nombre del titular</label>
                         <input th:field="*{nombreTitular}"
@@ -39,6 +42,7 @@
                                required>
                     </div>
 
+                    <!-- Fecha expiracion -->
                     <div class="mb-3">
                         <label>Fecha de expiracion</label>
 

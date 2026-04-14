@@ -19,7 +19,7 @@
     <description>Tienda web de floristería Tulip Shop</description>
 
     <properties>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
     </properties>
 
     <dependencies>

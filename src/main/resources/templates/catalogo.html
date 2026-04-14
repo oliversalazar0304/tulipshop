@@ -17,11 +17,11 @@
             Todas
         </a>
 
-        <a th:each="c : ${categorias}"
-           th:href="@{/catalogo/categoria/{id}(id=${c.id})}"
-           th:text="${c.nombre}"
-           class="btn btn-outline-primary me-2">
-        </a>
+      <a th:each="c : ${categorias}"
+   th:href="@{/catalogo(categoriaId=${c.id})}" 
+   th:text="${c.nombre}"
+   class="btn btn-outline-primary me-2">
+</a>
 
     </div>
 
@@ -42,7 +42,6 @@
                         th:text="${p.nombre}">
                     </h5>
 
-                    <!-- DESCRIPCION -->
                     <p class="card-text"
                        th:text="${p.descripcion}">
                     </p>
